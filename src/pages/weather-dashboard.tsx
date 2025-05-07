@@ -8,7 +8,6 @@ import {
   import { Button } from "../components/ui/button";
   import { MapPin, AlertTriangle, RefreshCw } from "lucide-react";
   import { useGeolocation } from "@/hooks/use-geolocation";
-  import { CitySearch } from "../components/city-search";
   import { WeatherDetails } from "../components/weather-details";
   import { WeatherForecast } from "../components/weather-forecast";
   import { HourlyTemperature } from "../components/hourly-temprature";
