@@ -1,13 +1,16 @@
+import React, { Suspense } from "react"; // Import React and Suspense
 import { useParams, useSearchParams } from "react-router-dom";
 import { useWeatherQuery, useForecastQuery } from "@/hooks/use-weather";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { AlertTriangle } from "lucide-react";
-import { CurrentWeather } from "../components/current-weather";
-import { HourlyTemperature } from "../components/hourly-temprature";
-import { WeatherDetails } from "../components/weather-details";
-import { WeatherForecast } from "../components/weather-forecast";
-import WeatherSkeleton from "../components/loading-skeleton";
 import { FavoriteButton } from "@/components/favorite-button";
+import WeatherSkeleton from "../components/loading-skeleton";
+
+// Lazy load components
+const CurrentWeather = React.lazy(() => import("../components/current-weather"));
+const HourlyTemperature = React.lazy(() => import("../components/hourly-temprature"));
+const WeatherDetails = React.lazy(() => import("../components/weather-details"));
+const WeatherForecast = React.lazy(() => import("../components/weather-forecast"));
 
 export function CityPage() {
   const [searchParams] = useSearchParams();
@@ -49,12 +52,14 @@ export function CityPage() {
       </div>
 
       <div className="grid gap-6">
-        <CurrentWeather data={weatherQuery.data} />
-        <HourlyTemperature data={forecastQuery.data} />
-        <div className="grid gap-6 md:grid-cols-2 items-start">
-          <WeatherDetails data={weatherQuery.data} />
-          <WeatherForecast data={forecastQuery.data} />
-        </div>
+        <Suspense fallback={<WeatherSkeleton />}>
+          <CurrentWeather data={weatherQuery.data} />
+          <HourlyTemperature data={forecastQuery.data} />
+          <div className="grid gap-6 md:grid-cols-2 items-start">
+            <WeatherDetails data={weatherQuery.data} />
+            <WeatherForecast data={forecastQuery.data} />
+          </div>
+        </Suspense>
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ interface ChartData {
   feels_like: number;
 }
 
-export function HourlyTemperature({ data }: HourlyTemperatureProps) {
+export default function HourlyTemperature({ data }: HourlyTemperatureProps) {
   // Get today's forecast data and format for chart
 
   const chartData: ChartData[] = data.list

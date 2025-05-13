@@ -7,7 +7,7 @@ interface WeatherDetailsProps {
   data: WeatherData;
 }
 
-export function WeatherDetails({ data }: WeatherDetailsProps) {
+export default function WeatherDetails({ data }: WeatherDetailsProps) {
   const { wind, main, sys } = data;
 
   // Format time using date-fns

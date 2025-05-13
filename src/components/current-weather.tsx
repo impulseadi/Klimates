@@ -7,7 +7,7 @@ interface CurrentWeatherProps {
   locationName?: GeocodingResponse;
 }
 
-export function CurrentWeather({ data, locationName }: CurrentWeatherProps) {
+export default function CurrentWeather({ data, locationName }: CurrentWeatherProps) {
   const {
     weather: [currentWeather],
     main: { temp, feels_like, temp_min, temp_max, humidity },
@@ -83,6 +83,7 @@ export function CurrentWeather({ data, locationName }: CurrentWeatherProps) {
                 src={`https://openweathermap.org/img/wn/${currentWeather.icon}@4x.png`}
                 alt={currentWeather.description}
                 className="h-full w-full object-contain"
+                loading="lazy"
               />
               <div className="absolute bottom-0 text-center">
                 <p className="text-sm font-medium capitalize">

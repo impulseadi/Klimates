@@ -14,6 +14,7 @@ export function Header() {
             src={theme === "dark" ? "/logo.png" : "/logo2.png"}
             alt="Klimate logo"
             className="h-14"
+            loading="lazy"
           />
         </Link>
 

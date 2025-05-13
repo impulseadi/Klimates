@@ -21,7 +21,7 @@ interface DailyForecast {
   };
 }
 
-export function WeatherForecast({ data }: WeatherForecastProps) {
+export default function WeatherForecast({ data }: WeatherForecastProps) {
   // Group forecast by day and get daily min/max
   const dailyForecasts = data.list.reduce((acc, forecast) => {
     const date = format(new Date(forecast.dt * 1000), "yyyy-MM-dd");
